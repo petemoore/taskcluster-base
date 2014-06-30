@@ -594,7 +594,7 @@ Entity.prototype.modify = function(modifier) {
   // and try again...
   var retryLoop = function() {
     // Apply modifier to properties
-    var modified = Promise.from(modifier.call(properties));
+    var modified = Promise.resolve(modifier.call(properties));
 
     // When modified attempt to update
     return modified.then(function() {

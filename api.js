@@ -342,7 +342,7 @@ authenticate.nonceManager = nonceManager;
 var handle = function(handler, context) {
   assert(handler, "No handler is provided");
   return function(req, res) {
-    Promise.from().then(function() {
+    Promise.resolve(null).then(function() {
       return handler.call(context, req, res);
     }).catch(function(err) {
       var incidentId = uuid.v4();

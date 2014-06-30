@@ -177,7 +177,7 @@ suite("entity", function() {
       date:     date
     }).then(function(item) {
       return Item.load(id, 'row-key').then(function(item2) {
-        return Promise.all(
+        return Promise.all([
           item.modify(function() {
             modified += 1;
             this.nb = this.nb + 2;
@@ -186,7 +186,7 @@ suite("entity", function() {
             modified += 1;
             this.nb = this.nb + 1;
           })
-        );
+        ]);
       });
     }).then(function(item) {
       assert(modified > 2, "Modifier should have been applied more than twice");
@@ -274,7 +274,7 @@ suite("entity", function() {
       ID:       id,
       date:     date
     });
-    return Promise.all(created_one, created_two).then(function() {
+    return Promise.all([created_one, created_two]).then(function() {
       return Item.queryPartitionKey(id);
     }).then(function(items) {
       assert(items.length == 2, "Expected two items");
@@ -308,7 +308,7 @@ suite("entity", function() {
       ID:       id,
       date:     date
     });
-    return Promise.all(created_one, created_two).then(function() {
+    return Promise.all([created_one, created_two]).then(function() {
       return Item.queryRowKey(id);
     }).then(function(items) {
       assert(items.length == 2, "Expected two items");
